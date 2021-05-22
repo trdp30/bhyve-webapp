@@ -26,7 +26,6 @@ function* workerAuthenticate({ username, password, actions }) {
     if (actions.onFailed) {
       actions.onFailed(error);
     }
-    yield put({ type: types.AUTHENTICATION_REQUEST_FAILED, error });
   }
 }
 
