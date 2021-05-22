@@ -1,3 +1,5 @@
+@import "../node_modules/react-toastify/dist/ReactToastify.min.css";
+
 .text {
   &-left {
     text-align: left;
@@ -68,4 +70,48 @@ body {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.skill {
+  &-wrapper {
+    height: ~"calc(100vh - 200px)";
+    overflow-y: auto;
+    border-bottom: none;
+  }
+  &-container {
+    width: 80%;
+    margin: auto;
+    overflow-x: hidden;
+    border-bottom: none;
+  }
+  &-card {
+    &:hover {
+      background-color: lighten(#2185d0, 50%) !important;
+      box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 darken(#2185d0, 10%) inset;
+    }
+
+    &:active {
+      background-color: lighten(#58aae9, 30%) !important;
+      box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 darken(#58aae9, 20%) inset;
+    }
+    &.selected {
+      background-color: lighten(#39cc87, 30%) !important;
+      box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 darken(#39cc87, 20%) inset;
+      font-weight: 600;
+    }
+  }
+}
+
+.margin {
+  &-no {
+    margin: 0 !important;
+  }
+}
+
+.word-break {
+  word-break: break-all;
+}
+
+.clear-both {
+  clear: both;
 }

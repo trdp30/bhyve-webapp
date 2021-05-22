@@ -1,6 +1,6 @@
 import { userActionTypes as types } from "../action-types";
 
-export const updateUser = ({ payload, actions = {} }) => {
+export const userUpdateData = ({ payload, actions = {} }) => {
   return {
     type: types.USER_UPDATE_REQUEST_INITIATED,
     payload,
@@ -16,17 +16,16 @@ export const userStoreData = ({ payload, meta = {} }) => {
   };
 };
 
-export const userFetchDetails = ({ user_id, actions = {} }) => {
+export const userFetchDetails = ({ actions = {} }) => {
   return {
-    types: types.USER_GET_PROFILE_REQUEST_INITIATED,
-    user_id,
+    type: types.USER_GET_PROFILE_REQUEST_INITIATED,
     actions
   };
 };
 
 export const userAddSkills = ({ user_id, payload, actions = {} }) => {
   return {
-    types: types.USER_ADD_SKILL_REQUEST_INITIATED,
+    type: types.USER_ADD_SKILL_REQUEST_INITIATED,
     user_id,
     payload,
     actions

@@ -6,6 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import ErrorBoundary from "./error-boundary";
 import Profile from "../screens/profile";
 import UpdateProfile from "../screens/user/update-profile";
+import AddSkills from "../screens/user/add-skills";
 
 export const publicRoutes = [
   {
@@ -28,6 +29,10 @@ export const privateRoutes = [
   {
     path: "/update-profile",
     component: UpdateProfile
+  },
+  {
+    path: "/add-skill",
+    component: AddSkills
   },
   {
     path: "/",

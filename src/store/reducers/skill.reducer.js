@@ -9,7 +9,8 @@ const skillReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SKILL_QUERY_REQUEST_SUCCEED:
       return {
-        ...state
+        ...state,
+        data: action.payload
       };
 
     default:

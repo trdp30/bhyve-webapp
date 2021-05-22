@@ -31,7 +31,7 @@ async function createRequest(path, payload) {
 
 function* workerUserUpdate({ payload, actions = {} }) {
   try {
-    const response = yield call(createRequest, "basic/profile", payload);
+    const response = yield call(createRequest, "user/basic/profile", payload);
     yield put(userStoreData({ payload: response, meta: {} }));
     if (actions && actions.onSuccess) {
       yield call(actions.onSuccess);
@@ -45,7 +45,7 @@ function* workerUserUpdate({ payload, actions = {} }) {
 
 function* workerUserAddSkill({ payload, actions = {} }) {
   try {
-    const response = yield call(createRequest, "skills", payload);
+    const response = yield call(createRequest, "user/skills", payload);
     yield put(userStoreData({ payload: response, meta: {} }));
     if (actions && actions.onSuccess) {
       yield call(actions.onSuccess);
@@ -59,7 +59,7 @@ function* workerUserAddSkill({ payload, actions = {} }) {
 
 function* workerFindFetch({ actions = {} }) {
   try {
-    const response = yield call(makeRequest, "profile");
+    const response = yield call(makeRequest, "user/profile");
     yield put(userStoreData({ payload: response, meta: {} }));
     if (actions && actions.onSuccess) {
       yield call(actions.onSuccess);

@@ -11,7 +11,11 @@ const userReducer = (state = initialState, action) => {
     case types.USER_ADD_SKILL_REQUEST_SUCCEED:
     case types.USER_UPDATE_REQUEST_SUCCEED:
       return {
-        ...state
+        ...state,
+        data: {
+          ...state.data,
+          ...action.payload
+        }
       };
 
     default:

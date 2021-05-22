@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "../";
+import { unAuthenticateInitiate } from "../actions/session.action";
 
 const host = "https://fechallenge.dev.bhyve.io/";
 
@@ -25,8 +26,15 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-  (response) => response,
-  (error) => Promise.reject(error)
+  (response) => {
+    return response;
+  },
+  function (error) {
+    if (error.response.status === 401) {
+      return store.dispatch(unAuthenticateInitiate());
+    }
+    return Promise.reject(error);
+  }
 );
 
 async function getRecord(url, config) {
