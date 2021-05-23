@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   function (error) {
-    if (error.response.status === 401) {
+    if (error.response.status === 401 && error.response.config.url !== "/user/signin") {
       return store.dispatch(unAuthenticateInitiate());
     }
     return Promise.reject(error);

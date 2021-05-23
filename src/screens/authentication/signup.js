@@ -66,7 +66,7 @@ const fields = [
     validate: (values) => {
       let error = requiredCheck(values, "confirm_password");
       if (!error && values.confirm_password !== values.password) {
-        error = "Passwords do not match";
+        error = "Password do not match";
       }
       return error;
     }
@@ -84,7 +84,7 @@ const UserExistView = (props) => {
       <p>Try giving something else or Sign in using the same username.</p>
       <p>
         Click here to{" "}
-        <span className="text-color-positive cursor-pointer" onClick={redirect}>
+        <span className="text-color-primary cursor-pointer" onClick={redirect}>
           Sign in
         </span>
       </p>
@@ -163,9 +163,7 @@ function SignUp(props) {
                     postRequest={update}
                     initialValues={initialValue}
                     submitButtonLabel={"Sign up"}
-                    submitButtonClassNames={
-                      "ui medium primary button text-weight-normal button-login"
-                    }
+                    submitButtonClassNames={"ui primary button text-weight-normal button-login"}
                   />
                 </div>
               </div>

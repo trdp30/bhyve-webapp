@@ -30,7 +30,7 @@ export default class ErrorBoundary extends Component {
                   <h1>Oop!</h1>
                   <p className="text-size-large">Something went wrong. Try Again.</p>
                   <p
-                    className="text-color-positive cursor-pointer text-size-large"
+                    className="text-color-primary cursor-pointer text-size-large"
                     onClick={this.reload}>
                     Click here to Reload.
                   </p>

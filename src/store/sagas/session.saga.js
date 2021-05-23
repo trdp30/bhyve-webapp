@@ -6,7 +6,6 @@ import { createRecord } from "../adapters";
 function* workerAuthenticate({ username, password, actions }) {
   try {
     const response = yield call(createRecord, "user/signin", { username, password });
-
     let tokenData = {
       user: {
         id: response.data.user.id,

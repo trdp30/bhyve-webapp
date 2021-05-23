@@ -69,11 +69,11 @@ function AddSkills(props) {
   }, []);
 
   useEffect(() => {
-    // if (user && user.skills && user.skills.length) {
-    //   history.replace("/profile");
-    // } else if (user.id && user.id) {
-    toggleLoadView(true);
-    // }
+    if (user && user.skills && user.skills.length) {
+      history.replace("/profile");
+    } else if (user.id && user.id) {
+      toggleLoadView(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.skills]);
 

@@ -45,11 +45,11 @@ const FormBase = (props) => {
               setSubmitting={setSubmitting}
             />
           ))}
-          <div className={clsx("field text-center")}>
+          <div className={clsx("field text-center padding-top-big")}>
             {status && <p className="text-color-red">{status}</p>}
             <button
               type="submit"
-              className={clsx(submitButtonClassNames || "ui positive button padding-md", {
+              className={clsx(submitButtonClassNames || "ui primary button padding-md", {
                 loading: isSubmitting
               })}
               disabled={isSubmitting}>

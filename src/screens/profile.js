@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import SpinLoading from "../components/spin-loader";
 import UserSkillCard from "../components/user-skill-card";
 import { userFetchDetails } from "../store/actions/user.action";
 
@@ -20,7 +21,7 @@ function Profile(props) {
           <div className="ui stackable grid margin-no">
             <div className="six wide column profile-picture-container">
               <img
-                class="ui medium circular image"
+                className="ui medium circular image"
                 src="/assets/images/profile-pic.jpeg"
                 alt="profile-pic"
               />
@@ -66,7 +67,11 @@ function Profile(props) {
       </div>
     );
   }
-  return <div>Loading...</div>;
+  return (
+    <div className="centered twelve wide column text-center">
+      <SpinLoading />
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => ({

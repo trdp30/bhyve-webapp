@@ -41,7 +41,7 @@ export const privateRoutes = [
   }
 ];
 
-const PrivateRoute = ({ component: Component, isAuthenticated, currentUserRole, ...rest }) => {
+const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
   return (
     <Route
       {...rest}
@@ -91,11 +91,8 @@ const Navigation = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.session.isAuthenticated,
-    currentUserRole: state.session.authorization && state.session.authorization.role
-  };
-};
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.session.isAuthenticated
+});
 
 export default connect(mapStateToProps)(Navigation);
