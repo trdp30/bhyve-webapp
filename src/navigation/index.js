@@ -7,6 +7,7 @@ import ErrorBoundary from "./error-boundary";
 import Profile from "../screens/profile";
 import UpdateProfile from "../screens/user/update-profile";
 import AddSkills from "../screens/user/add-skills";
+import AppContainer from "../components/app-container";
 
 export const publicRoutes = [
   {
@@ -53,7 +54,9 @@ const PrivateRoute = ({ component: Component, isAuthenticated, currentUserRole, 
             }}
           />
         ) : (
-          <Component {...props} />
+          <AppContainer>
+            <Component {...props} />
+          </AppContainer>
         )
       }
     />

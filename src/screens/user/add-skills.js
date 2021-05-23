@@ -2,14 +2,16 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import SkillListView from "../../components/skill-helpers/skill-list-view";
+import SpinLoading from "../../components/spin-loader";
 import { toastInfo } from "../../components/toast-helpers";
 import { skillQueryRequest } from "../../store/actions/skill.action";
 import { userAddSkills, userFetchDetails } from "../../store/actions/user.action";
 
 function AddSkills(props) {
-  const { user, skills, fetchUser, fetchSkill, updateUserSkill, history } = props;
+  const { user, skills, fetchUser, fetchSkill, updateUserSkill, history, request } = props;
   const [selectedSkills, addSkills] = useState([]);
   const [isLoading, toggleLoading] = useState(false);
+  const [loadView, toggleLoadView] = useState(false);
 
   const updateSelectedSkills = (skill) => {
     if (!isLoading) {
@@ -67,49 +69,62 @@ function AddSkills(props) {
   }, []);
 
   useEffect(() => {
-    if (user && user.skills && user.skills.length) {
-      history.replace("/profile");
-    }
+    // if (user && user.skills && user.skills.length) {
+    //   history.replace("/profile");
+    // } else if (user.id && user.id) {
+    toggleLoadView(true);
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.skills]);
 
-  if (user && user.id) {
+  if (loadView) {
     return (
-      <div className="ui container">
-        <div className="ui middle aligned centered stackable two column grid login-container margin-no">
-          <div className="row">
-            <div className="column text-center">
-              <div className="ui segments skill-wrapper margin-no">
-                <div className="skill-container">
-                  {skills && skills.length ? (
-                    <SkillListView
-                      skills={skills}
-                      updateSelectedSkills={updateSelectedSkills}
-                      selectedSkills={selectedSkills}
-                    />
-                  ) : (
-                    <div>Loading skills...</div>
-                  )}
-                </div>
-              </div>
-              <div className="ui segment text-center margin-no">
-                <div className={clsx("ui primary button", { disabled: isLoading })} onClick={save}>
-                  Add Skills
-                </div>
-              </div>
+      <div className="twelve wide column text-center">
+        <div className="ui segments margin-no skill-container">
+          <div className="ui segment border-none padding-top-big">
+            <div className="header">Add Skills</div>
+          </div>
+          <div className="ui segment border-none">
+            <div className="description padding-top-twelve">You can select upto 8 skills</div>
+            <div className="info padding-top-twelve">(Select at least 3 skills)</div>
+          </div>
+          <div className="ui segment skill-container border-none">
+            <div className="ui centered stackable grid margin-no">
+              <SkillListView
+                skills={skills}
+                request={request}
+                updateSelectedSkills={updateSelectedSkills}
+                selectedSkills={selectedSkills}
+              />
+            </div>
+          </div>
+          <div className="ui segment text-center margin-no">
+            <div
+              className={clsx(
+                "ui primary button button-login",
+                { disabled: isLoading },
+                { loading: isLoading }
+              )}
+              onClick={save}>
+              Add Skills
             </div>
           </div>
         </div>
       </div>
     );
   } else {
-    return <div>Loading...</div>;
+    return (
+      <div className="twelve wide column text-center">
+        <SpinLoading />
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
   user: state.user.data,
-  skills: state.skill.data
+  skills: state.skill.data,
+  request: state.skill.request
 });
 
 const mapDispatchToProps = (dispatch) => ({

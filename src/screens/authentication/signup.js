@@ -11,6 +11,7 @@ import {
 import { createRecord } from "../../store/adapters";
 import { toastError } from "../../components/toast-helpers";
 import ModalView from "../../components/modules/modal-view";
+import AppContainer from "../../components/app-container";
 
 const fields = [
   {
@@ -145,53 +146,59 @@ function SignUp(props) {
   };
 
   return (
-    <div className="ui container">
-      <div className="ui middle aligned stackable grid login-container">
-        <div className="row">
-          <div className="centered ten wide column">
-            <div className="ui segments">
-              <div className="ui segment">
-                <h5 className="text-size-big">Sign up to BHyve</h5>
-                <div className="padding-top-big">
+    <AppContainer>
+      <div className="centered ten wide column">
+        <div className="ui segments">
+          <div className="ui segment">
+            <div className="ui centered stackable grid">
+              <div className="row">
+                <div className="ten wide column padding-top-big">
+                  <h5 className="text-size-big text-center">Create account</h5>
+                </div>
+              </div>
+              <div className="row">
+                <div className="ten wide column padding-top-big">
                   <FormBase
                     fields={fields}
                     postRequest={update}
                     initialValues={initialValue}
                     submitButtonLabel={"Sign up"}
-                    submitButtonClassNames={"ui positive button text-weight-normal"}
+                    submitButtonClassNames={
+                      "ui medium primary button text-weight-normal button-login"
+                    }
                   />
                 </div>
               </div>
-              <div className="ui segment">
-                <div>
+              <div className="row">
+                <div className="ten wide column">
                   <b>Note:</b>
+                  <ul>
+                    <li>Username must be an email address</li>
+                    <li>
+                      A password has to be minimum of 8 characters and maximum of 20 characters
+                      limit. A password must contain a mixture of both uppercase and lowercase
+                      letters. At least 1 special character OR numeric value OR it can contain both.
+                    </li>
+                  </ul>
                 </div>
-                <ul>
-                  <li>Username must be an email address</li>
-                  <li>
-                    A password has to be minimum of 8 characters and maximum of 20 characters limit.
-                    A password must contain a mixture of both uppercase and lowercase letters. At
-                    least 1 special character OR numeric value OR it can contain both.
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
         </div>
+        <ModalView
+          openModal={openModal}
+          toggleModal={toggleModal}
+          content={<UserExistView redirect={redirect} username={existingUserName} />}
+          size={"tiny"}
+          showPositiveButton={true}
+          positiveButtonLabel={"Try Again"}
+          actionClassNames="text-center"
+          headerContent="User Exist"
+          headerClassNames="text-center"
+          contentClassNames="padding-vertical-large"
+        />
       </div>
-      <ModalView
-        openModal={openModal}
-        toggleModal={toggleModal}
-        content={<UserExistView redirect={redirect} username={existingUserName} />}
-        size={"tiny"}
-        showPositiveButton={true}
-        positiveButtonLabel={"Try Again"}
-        actionClassNames="text-center"
-        headerContent="User Exist"
-        headerClassNames="text-center"
-        contentClassNames="padding-vertical-large"
-      />
-    </div>
+    </AppContainer>
   );
 }
 

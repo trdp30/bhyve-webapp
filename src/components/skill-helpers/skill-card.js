@@ -11,12 +11,14 @@ function SkillCard(props) {
     return false;
   }, [selectedSkills, skill]);
   return (
-    <div
-      className={clsx("ui segment text-center skill-card cursor-pointer clear-both", {
-        selected: isSelected
-      })}
-      onClick={() => updateSelectedSkills(skill)}>
-      {skill.skillName}
+    <div className="five wide column text-center cursor-pointer">
+      <div
+        className={clsx("ui segment skill-card", {
+          selected: isSelected
+        })}
+        onClick={() => updateSelectedSkills(skill)}>
+        {skill.skillName}
+      </div>
     </div>
   );
 }
