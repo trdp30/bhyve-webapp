@@ -47,16 +47,6 @@ export function findAll(type, config = {}) {
   return getRecord(url, config);
 }
 
-export function findRecord(type, id, config = {}) {
-  let url = `/${type}`;
-  if (!id) {
-    throw new Error("'id' not provided");
-  } else {
-    url = `${url}/${id}`;
-  }
-  return getRecord(url, config);
-}
-
 //Making Query request call
 export async function query(type, query = {}, config = {}) {
   let url = `/${type}`;
@@ -73,25 +63,4 @@ export async function createRecord(type, payload = {}, config = {}) {
 
   let url = `/${type}`;
   return await axiosInstance.post(url, payload, config);
-}
-
-export function updateRecord(type, id, payload = {}) {
-  let url;
-  if (!type) {
-    throw new Error("'type' not provided");
-  } else if (!id) {
-    throw new Error("'id' not provided");
-  }
-
-  url = `${type}/${id}`;
-  return axiosInstance.put(url, payload);
-}
-
-export async function patch(type, payload = {}, config = {}) {
-  return axiosInstance.patch(type, payload, config);
-}
-
-export function deleteRecord(type, id, payload) {
-  let url = `${type}/${id}`;
-  return axiosInstance.delete(url);
 }

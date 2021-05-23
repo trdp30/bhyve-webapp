@@ -92,10 +92,20 @@ const UserExistView = (props) => {
   );
 };
 
+const SuccessView = () => {
+  return (
+    <div className="text-center">
+      <p className="text-size-large">Account created successfully!</p>
+      <p>Sign in using the same username and password.</p>
+    </div>
+  );
+};
+
 function SignUp(props) {
   const history = useHistory();
   const [openModal, toggleModal] = useState(false);
   const [existingUserName, setExistingUserName] = useState(null);
+  const [openSuccessModal, toggleSuccessModal] = useState(false);
 
   const initialValue = useMemo(
     () => ({
@@ -108,6 +118,7 @@ function SignUp(props) {
 
   const redirect = () => {
     toggleModal(false);
+    toggleSuccessModal(false);
     history.replace({
       pathname: "/login"
     });
@@ -120,7 +131,8 @@ function SignUp(props) {
         username: values.username,
         password: values.password
       });
-      redirect();
+      actions.resetForm();
+      toggleSuccessModal(true);
     } catch (error) {
       actions.setSubmitting(false);
       if (error && error.response && error.response.data && error.response.data.message) {
@@ -190,8 +202,22 @@ function SignUp(props) {
           size={"tiny"}
           showPositiveButton={true}
           positiveButtonLabel={"Try Again"}
+          onPositiveButtonClick={() => toggleModal(false)}
           actionClassNames="text-center"
           headerContent="User Exist"
+          headerClassNames="text-center"
+          contentClassNames="padding-vertical-large"
+        />
+        <ModalView
+          openModal={openSuccessModal}
+          toggleModal={toggleSuccessModal}
+          content={<SuccessView />}
+          size={"tiny"}
+          showPositiveButton={true}
+          positiveButtonLabel={"Goto Sign-in page"}
+          onPositiveButtonClick={redirect}
+          actionClassNames="text-center"
+          headerContent="Account Created"
           headerClassNames="text-center"
           contentClassNames="padding-vertical-large"
         />

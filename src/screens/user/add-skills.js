@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import SkillListView from "../../components/skill-helpers/skill-list-view";
 import SpinLoading from "../../components/spin-loader";
-import { toastInfo } from "../../components/toast-helpers";
+import { toastInfo, toastSuccess } from "../../components/toast-helpers";
 import { skillQueryRequest } from "../../store/actions/skill.action";
 import { userAddSkills, userFetchDetails } from "../../store/actions/user.action";
 
@@ -34,6 +34,10 @@ function AddSkills(props) {
 
   const onSuccess = () => {
     toggleLoading(false);
+    toastSuccess({
+      title: "Success",
+      message: "Successfully added"
+    });
     history.replace("/profile");
   };
 
@@ -87,6 +91,10 @@ function AddSkills(props) {
           <div className="ui segment border-none">
             <div className="description padding-top-twelve">You can select upto 8 skills</div>
             <div className="info padding-top-twelve">(Select at least 3 skills)</div>
+            <div className="info padding-top-twelve">
+              {" "}
+              {selectedSkills.length ? `Selected count: ${selectedSkills.length}` : ""}
+            </div>
           </div>
           <div className="ui segment skill-container border-none">
             <div className="ui centered stackable grid margin-no">
