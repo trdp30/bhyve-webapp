@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import SpinLoading from "../components/spin-loader";
 import UserSkillCard from "../components/user-skill-card";
 import { userFetchDetails } from "../store/actions/user.action";
 
 function Profile(props) {
-  const { fetchUser, user } = props;
+  const { fetchUser, user, history } = props;
+  const [loadView, toggleLoadView] = useState(false);
 
   useEffect(() => {
     if (!(user && user.id)) {
@@ -14,7 +15,20 @@ function Profile(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (user && user.id) {
+  useEffect(() => {
+    if (user && user.id) {
+      if (!user.firstName || !user.lastName) {
+        history.replace("/update-profile");
+      } else if (!user.skills) {
+        history.replace("/add-skill");
+      } else {
+        toggleLoadView(true);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  if (loadView) {
     return (
       <div className="centered twelve wide column">
         <div className="ui segment user-details-wrapper padding-no-vertical">

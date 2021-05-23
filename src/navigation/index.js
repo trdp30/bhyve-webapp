@@ -8,6 +8,7 @@ import Profile from "../screens/profile";
 import UpdateProfile from "../screens/user/update-profile";
 import AddSkills from "../screens/user/add-skills";
 import AppContainer from "../components/app-container";
+import NotFound from "../screens/not-found";
 
 export const publicRoutes = [
   {
@@ -86,6 +87,7 @@ const Navigation = (props) => {
       <Switch>
         {PublicRoutes}
         {allOtherRoutes}
+        <Route path="*" component={NotFound} />
       </Switch>
     </ErrorBoundary>
   );

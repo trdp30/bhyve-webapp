@@ -73,13 +73,17 @@ function AddSkills(props) {
   }, []);
 
   useEffect(() => {
-    if (user && user.skills && user.skills.length) {
-      history.replace("/profile");
-    } else if (user.id && user.id) {
-      toggleLoadView(true);
+    if (user.id && user.id) {
+      if (!user.firstName || !user.lastName) {
+        history.replace("/update-profile");
+      } else if (!user.skills) {
+        toggleLoadView(true);
+      } else {
+        history.replace("/profile");
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user.skills]);
+  }, [user]);
 
   if (loadView) {
     return (

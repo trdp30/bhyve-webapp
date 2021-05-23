@@ -67,10 +67,14 @@ function UpdateProfile(props) {
   }, []);
 
   useEffect(() => {
-    if (user && user.firstName && user.lastName) {
-      history.replace("add-skill");
-    } else if (user && user.id) {
-      toggleLoadView(true);
+    if (user.id && user.id) {
+      if (!user.firstName || !user.lastName) {
+        toggleLoadView(true);
+      } else if (!user.skills) {
+        history.replace("add-skill");
+      } else {
+        history.replace("/profile");
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
