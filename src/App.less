@@ -52,6 +52,13 @@ body {
 }
 
 .padding {
+  &-no {
+    padding: 0 !important;
+    &-vertical {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
   &-top {
     &-twelve {
       padding-top: 12px;
@@ -114,4 +121,56 @@ body {
 
 .clear-both {
   clear: both;
+}
+
+.profile-picture {
+  &-container {
+    background-color: #e7ffff;
+  }
+}
+
+.width {
+  &-full {
+    width: 100%;
+  }
+}
+
+.height {
+  &-full {
+    height: 100%;
+  }
+}
+
+.user-details {
+  &-container {
+    height: 100vh;
+  }
+  &-wrapper {
+    height: calc(100% - 300px);
+    .label {
+      font-weight: 600;
+      font-size: 16px;
+      color: rgb(136, 135, 135);
+      margin-bottom: 10px !important;
+    }
+    .data {
+      font-weight: 600;
+      font-size: 20px;
+      color: rgb(10, 10, 10);
+      .skill-count {
+        background: #58aae9;
+        padding: 3px 20px;
+        border-radius: 20px;
+        color: white;
+      }
+    }
+    .user-skill-card {
+      border-radius: 30px !important;
+      font-weight: 600;
+    }
+  }
+}
+
+.border-none {
+  border: none;
 }

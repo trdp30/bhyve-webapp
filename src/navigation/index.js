@@ -53,11 +53,7 @@ const PrivateRoute = ({ component: Component, isAuthenticated, currentUserRole, 
             }}
           />
         ) : (
-          <>
-            <div className="ui container">
-              <Component {...props} />
-            </div>
-          </>
+          <Component {...props} />
         )
       }
     />
