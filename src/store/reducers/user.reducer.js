@@ -1,4 +1,4 @@
-import { userActionTypes as types } from "../action-types";
+import { sessionActionTypes, userActionTypes as types } from "../action-types";
 
 const initialState = {
   request: {},
@@ -17,6 +17,8 @@ const userReducer = (state = initialState, action) => {
           ...action.payload
         }
       };
+    case sessionActionTypes.UNAUTHENTICATED_REQUEST_SUCCEED:
+      return initialState;
 
     default:
       return state;

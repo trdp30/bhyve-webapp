@@ -1,4 +1,4 @@
-import { skillActionTypes as types } from "../action-types";
+import { sessionActionTypes, skillActionTypes as types } from "../action-types";
 
 const initialState = {
   request: {
@@ -26,6 +26,8 @@ const skillReducer = (state = initialState, action) => {
         },
         data: action.payload
       };
+    case sessionActionTypes.UNAUTHENTICATED_REQUEST_SUCCEED:
+      return initialState;
 
     default:
       return state;

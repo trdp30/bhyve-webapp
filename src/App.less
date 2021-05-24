@@ -47,11 +47,11 @@
 
 .login {
   &-container {
-    height: 100vh;
+    height: ~"calc(100vh - 49.09px)";
     background-color: #b4bef5;
   }
   &-wrapper {
-    height: ~"calc(100vh - 270px)";
+    height: ~"calc(100vh - 319.09px)";
     min-height: 443px;
     .header {
       font-size: 26px;
@@ -84,7 +84,7 @@ body {
 }
 
 .app-container {
-  height: 100vh;
+  height: ~"calc(100vh - 49.09px)";
 }
 
 .padding {
@@ -190,11 +190,11 @@ body {
 
 .user-details {
   &-container {
-    height: 100vh;
+    height: ~"calc(100vh - 49.09px)";
     background: #b4bef5;
   }
   &-edit {
-    height: calc(100vh - 300px);
+    height: calc(100vh - 349.09px);
     min-height: 320px;
     .header {
       font-size: 42px;
@@ -283,5 +283,20 @@ body {
   }
   100% {
     transform: rotate(1800deg);
+  }
+}
+
+.nav-bar {
+  border-radius: 0 !important;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  &-container {
+    height: 49.09px;
+  }
+  .logo {
+    background-color: white !important;
+    border-radius: 0 !important;
   }
 }

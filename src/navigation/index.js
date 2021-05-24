@@ -1,7 +1,7 @@
 import LoginScreen from "../screens/authentication/login";
 import SignupScreen from "../screens/authentication/signup";
 import { connect } from "react-redux";
-import React from "react";
+import React, { Fragment } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import ErrorBoundary from "./error-boundary";
 import Profile from "../screens/profile";
@@ -9,6 +9,7 @@ import UpdateProfile from "../screens/user/update-profile";
 import AddSkills from "../screens/user/add-skills";
 import AppContainer from "../components/app-container";
 import NotFound from "../screens/not-found";
+import NavBar from "../components/nav-bar";
 
 export const publicRoutes = [
   {
@@ -55,9 +56,12 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
             }}
           />
         ) : (
-          <AppContainer>
-            <Component {...props} />
-          </AppContainer>
+          <Fragment>
+            <NavBar />
+            <AppContainer>
+              <Component {...props} />
+            </AppContainer>
+          </Fragment>
         )
       }
     />
